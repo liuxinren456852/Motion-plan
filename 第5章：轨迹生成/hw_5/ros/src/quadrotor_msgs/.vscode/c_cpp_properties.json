@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/teamo/Motion_plan/homework4/devel/include/**",
+                "/opt/ros/melodic/include/**",
+                "/home/teamo/Motion_plan/homework4/src/quadrotor_msgs/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}

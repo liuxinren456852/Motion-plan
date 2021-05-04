@@ -285,29 +285,17 @@ Vector3d getPosPoly( MatrixXd polyCoeff, int k, double t )
 VectorXd timeAllocation( MatrixXd Path)
 { 
     VectorXd time(Path.rows() - 1);
-    
-    /*
-
-    STEP 1: Learn the "trapezoidal velocity" of "TIme Allocation" in L5, then finish this timeAllocation function
-
-    variable declaration: _Vel, _Acc: _Vel = 1.0, _Acc = 1.0 in this homework, you can change these in the test.launch
-
-    You need to return a variable "time" contains time allocation, which's type is VectorXd
-
-    The time allocation is many relative timeline but not one common timeline
-
-    */
-    // 加速段时间
-    double t_scope = _Vel/_Acc;
-    // 加速段距离
-    double distance_acc = 1.0 /2.0 * _Acc * t_scope * t_scope;
+    // 加速段时间(同时考虑加速和减速段）
+    double t_scope = 2.0*_Vel/_Acc;
+    // 加速段距离(同时考虑加速和减速段）
+    double distance_acc = 1.0 /2.0 * _Acc * t_scope * t_scope * 2.0;
     
     for (int k = 0; k< Path.rows()-1; ++k){
         Vector3d delta = Path.row(k) - Path.row(k + 1);
         double d = std::sqrt(delta.dot(delta));
 
         if(d <= distance_acc){
-            time(k) = std::sqrt(2.0*d/_Acc);
+            time(k) = std::sqrt(d/_Acc);
         }
         else{
             time(k) = t_scope + (d - distance_acc)/_Vel;
