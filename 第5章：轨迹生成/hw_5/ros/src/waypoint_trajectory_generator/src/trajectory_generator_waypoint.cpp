@@ -39,7 +39,8 @@ void TrajectoryGeneratorWaypoint::GetHession(const int n_seg,
 
         for(int i = d_order; i < p_num1d; ++i){
             for(int j = d_order; j < p_num1d ; ++j){
-                double value = 1.0*Factorial(i)/Factorial(i-d_order)*Factorial(j)/Factorial(j-d_order)/(i+j-2*d_order+1)*pow(Time(k),i+j-2*d_order+1);
+                double value = 1.0*Factorial(i)/Factorial(i-d_order)*Factorial(j)
+                /Factorial(j-d_order)/(i+j-2*d_order+1)*pow(Time(k),i+j-2*d_order+1);
                 hession.insert(k*p_num1d + i,k*p_num1d + j) = value;
             }
         }

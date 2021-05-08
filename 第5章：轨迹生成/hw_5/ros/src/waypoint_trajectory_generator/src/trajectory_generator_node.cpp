@@ -285,8 +285,8 @@ Vector3d getPosPoly( MatrixXd polyCoeff, int k, double t )
 VectorXd timeAllocation( MatrixXd Path)
 { 
     VectorXd time(Path.rows() - 1);
-    // 加速段时间(同时考虑加速和减速段）
-    double t_scope = 2.0*_Vel/_Acc;
+    // 加速段时间
+    double t_scope = _Vel/_Acc;
     // 加速段距离(同时考虑加速和减速段）
     double distance_acc = 1.0 /2.0 * _Acc * t_scope * t_scope * 2.0;
     
@@ -298,7 +298,7 @@ VectorXd timeAllocation( MatrixXd Path)
             time(k) = std::sqrt(d/_Acc);
         }
         else{
-            time(k) = t_scope + (d - distance_acc)/_Vel;
+            time(k) = 2*t_scope + (d - distance_acc)/_Vel;
         }
     }
     return time;
